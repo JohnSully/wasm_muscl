@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#define complex _Complex
+#define complex
 #ifdef __GNUC__
 #define _Complex_I (__extension__ (0.0f+1.0fi))
 #else

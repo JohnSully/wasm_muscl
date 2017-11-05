@@ -30,41 +30,42 @@ verbose = False
 # TODO add 'time'.
 SRC_DIRS = [
     'ctype', 'env', 'errno', 'exit', 'internal', 'ldso', 'malloc', 'math',
-    'prng', 'regex', 'stdio', 'string', 'stdlib', 'unistd']
+    'prng', 'regex', 'stdio', 'string', 'stdlib', 'stubs', 'multibyte']
 BLACKLIST = [
-    'puts.c',  # The JS version is nicer for now.
-    'strsignal.c', '__ctype_get_mb_cur_max.c',
-    'printf.c', 'fprintf.c', 'fscanf.c', 'vfprintf.c', 'asprintf.c',
-    'dprintf.c', 'scanf.c', 'sprintf.c', 'snprintf.c', 'sscanf.c',
-    'vfscanf.c', 'vsnprintf.c',
-    'qsort.c', 'regexec.c', 'regcomp.c', 'strftime.c', 'strptime.c',
-    'faccessat.c', 'floatscan.c', 'getcwd.c', 'glob.c', 'pclose.c',
-    '__tz.c', 'pwrite.c', 'pread.c', '__fdopen.c', '__fopen_rb_ca.c',
-    '__rem_pio2_large.c', '__stdio_write.c',
-    '__stdout_write.c', 'vdprintf.c',
-    '__year_to_secs.c', 'tcgetpgrp.c', 'tcsetpgrp.c', 'timer_create.c',
-    'tmpfile.c', 'utime.c', 'wcsftime.c',
-    'dlerror.c', 'exit.c', 'abort.c', '_Exit.c', '__libc_start_main.c',
-    # Wide characters.
-    'fgetwc.c', 'getw.c', 'vfwprintf.c',
-    'fgetws.c', 'getwc.c', 'vfwscanf.c',
-    'fputwc.c', 'getwchar.c', 'vswprintf.c',
-    'fputws.c', 'swprintf.c', 'vswscanf.c',
-    'swscanf.c', 'vwprintf.c',
-    'fwprintf.c', 'putw.c', 'vwscanf.c', 'fwscanf.c',
-    'putwc.c', 'wprintf.c', 'open_wmemstream.c',
-    'fwscanf.c', 'putwchar.c', 'ungetwc.c', 'wscanf.c', 'fwide.c',
-    'iswctype.c', 'iswupper.c', 'towctrans.c', 'wctrans.c', 'iswgraph.c',
-    'iswblank.c', 'iswpunct.c', 'wcwidth.c', 'iswspace.c', 'iswxdigit.c',
-    'wcswidth.c', 'iswcntrl.c', 'iswalnum.c', 'iswalpha.c', 'iswlower.c',
-    'iswprint.c', 'iswdigit.c', 'wcsdup.c', 'wcsncmp.c', 'wcscpy.c',
-    'wcstok.c', 'wcpncpy.c', 'wcsrchr.c', 'wmemchr.c', 'wcsspn.c',
-    'wmemcpy.c', 'wcscspn.c', 'wcscasecmp_l.c', 'wcsncat.c', 'wcsncasecmp_l.c',
-    'wmemmove.c', 'wcscasecmp.c', 'wcspbrk.c', 'wcschr.c', 'wmemcmp.c',
-    'wcpcpy.c', 'wcsnlen.c', 'wcsstr.c', 'wmemset.c', 'wcscmp.c', 'wcsncpy.c',
-    'wcswcs.c', 'wcscat.c', 'wcslen.c', 'wcsncasecmp.c',
-    # stdio file lock.
-    'flockfile.c', 'ftrylockfile.c', 'funlockfile.c', '__lockfile.c'
+    "pclose.c", "pread.c", "pwrite.c"
+#    'puts.c',  # The JS version is nicer for now.
+#    'strsignal.c', '__ctype_get_mb_cur_max.c',
+#    'fprintf.c', 'fscanf.c', 'vfprintf.c', 'asprintf.c',
+#    'dprintf.c', 'scanf.c', 'sprintf.c', 'snprintf.c', 'sscanf.c',
+#    'vfscanf.c', 'vsnprintf.c',
+#    'qsort.c', 'regexec.c', 'regcomp.c', 'strftime.c', 'strptime.c',
+#    'faccessat.c', 'floatscan.c', 'getcwd.c', 'glob.c', 'pclose.c',
+#    '__tz.c', 'pwrite.c', 'pread.c', '__fdopen.c', '__fopen_rb_ca.c',
+#    '__rem_pio2_large.c', '__stdio_write.c',
+#    '__stdout_write.c', 'vdprintf.c',
+#    '__year_to_secs.c', 'tcgetpgrp.c', 'tcsetpgrp.c', 'timer_create.c',
+#    'tmpfile.c', 'utime.c', 'wcsftime.c',
+#    'dlerror.c', 'exit.c', 'abort.c', '_Exit.c', '__libc_start_main.c',
+#    # Wide characters.
+#    'fgetwc.c', 'getw.c', 'vfwprintf.c',
+#    'fgetws.c', 'getwc.c', 'vfwscanf.c',
+#    'fputwc.c', 'getwchar.c', 'vswprintf.c',
+#    'fputws.c', 'swprintf.c', 'vswscanf.c',
+#    'swscanf.c', 'vwprintf.c',
+#    'fwprintf.c', 'putw.c', 'vwscanf.c', 'fwscanf.c',
+#    'putwc.c', 'wprintf.c', 'open_wmemstream.c',
+#    'fwscanf.c', 'putwchar.c', 'ungetwc.c', 'wscanf.c', 'fwide.c',
+#    'iswctype.c', 'iswupper.c', 'towctrans.c', 'wctrans.c', 'iswgraph.c',
+#    'iswblank.c', 'iswpunct.c', 'wcwidth.c', 'iswspace.c', 'iswxdigit.c',
+#    'wcswidth.c', 'iswcntrl.c', 'iswalnum.c', 'iswalpha.c', 'iswlower.c',
+#    'iswprint.c', 'iswdigit.c', 'wcsdup.c', 'wcsncmp.c', 'wcscpy.c',
+#    'wcstok.c', 'wcpncpy.c', 'wcsrchr.c', 'wmemchr.c', 'wcsspn.c',
+#    'wmemcpy.c', 'wcscspn.c', 'wcscasecmp_l.c', 'wcsncat.c', 'wcsncasecmp_l.c',
+#    'wmemmove.c', 'wcscasecmp.c', 'wcspbrk.c', 'wcschr.c', 'wmemcmp.c',
+#    'wcpcpy.c', 'wcsnlen.c', 'wcsstr.c', 'wmemset.c', 'wcscmp.c', 'wcsncpy.c',
+#    'wcswcs.c', 'wcscat.c', 'wcslen.c', 'wcsncasecmp.c',
+#    # stdio file lock.
+#  'flockfile.c', 'ftrylockfile.c', 'funlockfile.c', '__lockfile.c'
 ]
 WARNINGS = ['-Wno-incompatible-library-redeclaration',
             '-Wno-shift-op-parentheses',
